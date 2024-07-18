@@ -22,6 +22,6 @@ img.remix-image.blur {
   }
   100% {
     filter: blur(0px);
-    background: white;
+    background: transparent;
   }
 }
