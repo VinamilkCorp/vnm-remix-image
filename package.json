@@ -48,6 +48,7 @@
     "@rollup/plugin-replace": "^5.0.7",
     "@rollup/plugin-terser": "~0.1.0",
     "@rollup/plugin-wasm": "^6.0.1",
+    "axios": "^1.7.2",
     "clsx": "^1.2.1",
     "is-svg": "^4.3.2",
     "js-image-lib": "^1.0.1",

@@ -8,14 +8,13 @@ import {
   redirectResponse,
 } from "../../utils/response";
 import { decodeQuery, decodeTransformQuery, parseURL } from "../../utils/url";
-import { fetchResolver } from "../resolvers/fetchResolver";
 import { pureTransformer } from "../transformers";
 
 export const imageLoader: AssetLoader = async (
   {
     selfUrl,
     cache = null,
-    resolver = fetchResolver,
+    resolver,
     transformer = pureTransformer,
     useFallbackFormat = true,
     fallbackFormat,
@@ -127,7 +126,7 @@ export const imageLoader: AssetLoader = async (
         throw new RemixImageError("The requested image host is not allowed!");
       }
 
-      const res = await resolver(
+      const res = await resolver?.(
         src,
         assetUrl.toString(),
         transformOptions,
@@ -136,15 +135,15 @@ export const imageLoader: AssetLoader = async (
 
       if (verbose) {
         console.log(
-          `Fetched image [${cacheKey}] directly using resolver: ${resolver.name}.`
+          `Fetched image [${cacheKey}] directly using resolver: ${resolver?.name}.`
         );
       }
 
       isNewImage = true;
       shouldTransform = true;
 
-      loadedImg = res.buffer;
-      inputContentType = res.contentType;
+      loadedImg = res?.buffer;
+      inputContentType = res?.contentType;
     }
 
     if (!loadedImg || !inputContentType) {

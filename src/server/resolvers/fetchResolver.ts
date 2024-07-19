@@ -2,21 +2,6 @@ import { RemixImageError } from "../../types/error";
 import { MimeType } from "../../types/file";
 import type { Resolver } from "../../types/resolver";
 
-export default {
-  async fetch(imgRequest: any) {
-    const headers = new Headers({
-      "Accept-Encoding": "br, gzip",
-    });
-    let response = await fetch(imgRequest);
-
-    return new Response(response.body, {
-      status: response.status,
-      statusText: response.statusText,
-      headers: response.headers,
-    });
-  },
-};
-
 export const fetchResolver: Resolver = async (_asset, url) => {
   const imgRequest = new Request(url, {
     headers: {
