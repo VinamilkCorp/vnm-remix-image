@@ -2,6 +2,10 @@ import { RemixImageError } from "../../types/error";
 import { MimeType } from "../../types/file";
 import type { Resolver } from "../../types/resolver";
 
+async function fetchImage(imgRequest: any) {
+  return await fetch(imgRequest);
+}
+
 export const fetchResolver: Resolver = async (_asset, url) => {
   const imgRequest = new Request(url, {
     headers: {
@@ -9,7 +13,7 @@ export const fetchResolver: Resolver = async (_asset, url) => {
     },
   });
 
-  const imageResponse = await fetch(imgRequest);
+  const imageResponse = await fetchImage(imgRequest);
 
   if (!imageResponse.ok) {
     throw new RemixImageError("Failed to fetch image!");
