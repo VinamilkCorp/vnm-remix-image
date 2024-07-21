@@ -42,6 +42,8 @@ export function handleLoading(
   src: string,
   onLoadingComplete: OnLoadingComplete | null | undefined
 ): void {
+  img.style.animationDuration = "0.125s";
+  img.classList.remove("blur");
   if (!img || img["data-loaded-src"] === src) {
     return;
   }

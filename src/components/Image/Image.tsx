@@ -118,6 +118,7 @@ export const Image = React.memo<ImageProps>(
           onLoad={(event) => {
             if (!unoptimized) {
               const img = event.currentTarget as ImgElementWithDataProp;
+              console.log(img, src);
               handleLoading(img, src!, onLoadingComplete);
             }
             if (onLoad) {
